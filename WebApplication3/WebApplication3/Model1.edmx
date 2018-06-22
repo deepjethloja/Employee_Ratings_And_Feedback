@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Db_1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminLoginInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeveloperLoginInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManagerId" Type="int" />
+          <Property Name="Ratings" Type="float" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedbackId" />
+          </Key>
+          <Property Name="FeedbackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeveloperId" Type="int" />
+          <Property Name="SubtaskId" Type="int" />
+          <Property Name="FeedbackStr" Type="nvarchar(max)" />
+          <Property Name="Positivity" Type="float" />
+        </EntityType>
+        <EntityType Name="GetSubtaskInfo">
+          <Key>
+            <PropertyRef Name="SubtaskId" />
+          </Key>
+          <Property Name="SubtaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeveloperId" Type="int" />
+          <Property Name="ManagerId" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ProgressPercent" Type="int" />
+          <Property Name="Deadline" Type="date" />
+          <Property Name="CompletionStatus" Type="int" />
+        </EntityType>
+        <EntityType Name="GetTaskInfo">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="ManagerId" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ProgressPercent" Type="int" Nullable="false" />
+          <Property Name="Deadline" Type="date" Nullable="false" />
+          <Property Name="CompletionStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManagerLoginInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="40" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image_url" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Subtask">
+          <Key>
+            <PropertyRef Name="SubtaskId" />
+          </Key>
+          <Property Name="SubtaskId" Type="int" Nullable="false" />
+          <Property Name="DeveloperId" Type="int" />
+          <Property Name="ManagerId" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ProgressPercent" Type="int" />
+          <Property Name="Deadline" Type="date" />
+          <Property Name="CompletionStatus" Type="int" />
+        </EntityType>
+        <Function Name="Admin_Home" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Change_Password_Developer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Previous" Type="nvarchar" Mode="In" />
+          <Parameter Name="New" Type="nvarchar" Mode="In" />
+          <Parameter Name="ConfirmNew" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Change_Password_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Previous" Type="nvarchar" Mode="In" />
+          <Parameter Name="New" Type="nvarchar" Mode="In" />
+          <Parameter Name="ConfirmNew" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Current_Task_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Feedback_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeveloperId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetLoginInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="My_developers_ratings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="My_PreviousSubtasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="My_Rating" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="My_Subtasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Previous_Task_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="View_MyRatings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="Db_1ModelStoreContainer">
+          <EntitySet Name="AdminLoginInfo" EntityType="Self.AdminLoginInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeveloperLoginInfo" EntityType="Self.DeveloperLoginInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GetSubtaskInfo" EntityType="Self.GetSubtaskInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GetTaskInfo" EntityType="Self.GetTaskInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManagerLoginInfo" EntityType="Self.ManagerLoginInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subtask" EntityType="Self.Subtask" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Db_1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Db_1Entities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="GetLoginInfo" ReturnType="Collection(String)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_Home" ReturnType="Collection(Db_1Model.Admin_Home_Result)" />
+          <FunctionImport Name="Change_Password_Developer">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Previous" Mode="In" Type="String" />
+            <Parameter Name="New" Mode="In" Type="String" />
+            <Parameter Name="ConfirmNew" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Change_Password_Manager">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Previous" Mode="In" Type="String" />
+            <Parameter Name="New" Mode="In" Type="String" />
+            <Parameter Name="ConfirmNew" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Current_Task_Manager" ReturnType="Collection(Db_1Model.Current_Task_Manager_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Feedback_Manager">
+          <Parameter Name="DeveloperId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="My_developers_ratings" ReturnType="Collection(Db_1Model.My_developers_ratings_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="My_PreviousSubtasks" ReturnType="Collection(Db_1Model.My_PreviousSubtasks_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="My_Rating" ReturnType="Collection(Double)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="My_Subtasks" ReturnType="Collection(Db_1Model.My_Subtasks_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Previous_Task_Manager" ReturnType="Collection(Db_1Model.Previous_Task_Manager_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="My_Rating1" ReturnType="Collection(Double)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="View_MyRatings" ReturnType="Collection(Db_1Model.View_MyRatings_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="AdminLoginInfoes" EntityType="Db_1Model.AdminLoginInfo" />
+          <EntitySet Name="DeveloperLoginInfoes" EntityType="Db_1Model.DeveloperLoginInfo" />
+          <EntitySet Name="Feedbacks" EntityType="Db_1Model.Feedback" />
+          <EntitySet Name="GetSubtaskInfoes" EntityType="Db_1Model.GetSubtaskInfo" />
+          <EntitySet Name="GetTaskInfoes" EntityType="Db_1Model.GetTaskInfo" />
+          <EntitySet Name="ManagerLoginInfoes" EntityType="Db_1Model.ManagerLoginInfo" />
+          <EntitySet Name="Subtasks" EntityType="Db_1Model.Subtask" />
+        </EntityContainer>
+        <ComplexType Name="Admin_Home_Result">
+          <Property Type="Int32" Name="TaskId" Nullable="false" />
+          <Property Type="Int32" Name="ManagerId" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="Int32" Name="ProgressPercent" Nullable="false" />
+          <Property Type="DateTime" Name="Deadline" Nullable="false" />
+          <Property Type="Int32" Name="CompletionStatus" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Current_Task_Manager_Result">
+          <Property Type="Int32" Name="TaskId" Nullable="false" />
+          <Property Type="Int32" Name="ManagerId" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="Int32" Name="ProgressPercent" Nullable="false" />
+          <Property Type="DateTime" Name="Deadline" Nullable="false" />
+          <Property Type="Int32" Name="CompletionStatus" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="My_developers_ratings_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ManagerId" Nullable="true" />
+          <Property Type="Double" Name="Ratings" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="My_PreviousSubtasks_Result">
+          <Property Type="Int32" Name="SubtaskId" Nullable="false" />
+          <Property Type="Int32" Name="DeveloperId" Nullable="true" />
+          <Property Type="Int32" Name="ManagerId" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="Int32" Name="ProgressPercent" Nullable="true" />
+          <Property Type="DateTime" Name="Deadline" Nullable="true" />
+          <Property Type="Int32" Name="CompletionStatus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="My_Subtasks_Result">
+          <Property Type="Int32" Name="SubtaskId" Nullable="false" />
+          <Property Type="Int32" Name="DeveloperId" Nullable="true" />
+          <Property Type="Int32" Name="ManagerId" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="Int32" Name="ProgressPercent" Nullable="true" />
+          <Property Type="DateTime" Name="Deadline" Nullable="true" />
+          <Property Type="Int32" Name="CompletionStatus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Previous_Task_Manager_Result">
+          <Property Type="Int32" Name="TaskId" Nullable="false" />
+          <Property Type="Int32" Name="ManagerId" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="Int32" Name="ProgressPercent" Nullable="false" />
+          <Property Type="DateTime" Name="Deadline" Nullable="false" />
+          <Property Type="Int32" Name="CompletionStatus" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="View_MyRatings_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ManagerId" Nullable="true" />
+          <Property Type="Double" Name="Ratings" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="AdminLoginInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DeveloperLoginInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerId" Type="Int32" />
+          <Property Name="Ratings" Type="Double" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedbackId" />
+          </Key>
+          <Property Name="FeedbackId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeveloperId" Type="Int32" />
+          <Property Name="SubtaskId" Type="Int32" />
+          <Property Name="FeedbackStr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Positivity" Type="Double" />
+        </EntityType>
+        <EntityType Name="GetSubtaskInfo">
+          <Key>
+            <PropertyRef Name="SubtaskId" />
+          </Key>
+          <Property Name="SubtaskId" Type="Int32" Nullable="false" />
+          <Property Name="DeveloperId" Type="Int32" />
+          <Property Name="ManagerId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProgressPercent" Type="Int32" />
+          <Property Name="Deadline" Type="DateTime" Precision="0" />
+          <Property Name="CompletionStatus" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GetTaskInfo">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="ManagerId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProgressPercent" Type="Int32" Nullable="false" />
+          <Property Name="Deadline" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CompletionStatus" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManagerLoginInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Subtask">
+          <Key>
+            <PropertyRef Name="SubtaskId" />
+          </Key>
+          <Property Name="SubtaskId" Type="Int32" Nullable="false" />
+          <Property Name="DeveloperId" Type="Int32" />
+          <Property Name="ManagerId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProgressPercent" Type="Int32" />
+          <Property Name="Deadline" Type="DateTime" Precision="0" />
+          <Property Name="CompletionStatus" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Db_1ModelStoreContainer" CdmEntityContainer="Db_1Entities">
+          <FunctionImportMapping FunctionImportName="GetLoginInfo" FunctionName="Db_1Model.Store.GetLoginInfo" />
+          <FunctionImportMapping FunctionImportName="Admin_Home" FunctionName="Db_1Model.Store.Admin_Home">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_1Model.Admin_Home_Result">
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Change_Password_Developer" FunctionName="Db_1Model.Store.Change_Password_Developer" />
+          <FunctionImportMapping FunctionImportName="Change_Password_Manager" FunctionName="Db_1Model.Store.Change_Password_Manager" />
+          <FunctionImportMapping FunctionImportName="Current_Task_Manager" FunctionName="Db_1Model.Store.Current_Task_Manager">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_1Model.Current_Task_Manager_Result">
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Feedback_Manager" FunctionName="Db_1Model.Store.Feedback_Manager" />
+          <FunctionImportMapping FunctionImportName="My_developers_ratings" FunctionName="Db_1Model.Store.My_developers_ratings">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_1Model.My_developers_ratings_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Ratings" ColumnName="Ratings" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="My_PreviousSubtasks" FunctionName="Db_1Model.Store.My_PreviousSubtasks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_1Model.My_PreviousSubtasks_Result">
+                <ScalarProperty Name="SubtaskId" ColumnName="SubtaskId" />
+                <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="My_Rating" FunctionName="Db_1Model.Store.My_Rating" />
+          <FunctionImportMapping FunctionImportName="My_Subtasks" FunctionName="Db_1Model.Store.My_Subtasks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_1Model.My_Subtasks_Result">
+                <ScalarProperty Name="SubtaskId" ColumnName="SubtaskId" />
+                <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Previous_Task_Manager" FunctionName="Db_1Model.Store.Previous_Task_Manager">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_1Model.Previous_Task_Manager_Result">
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="View_MyRatings" FunctionName="Db_1Model.Store.View_MyRatings">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_1Model.View_MyRatings_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Ratings" ColumnName="Ratings" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="AdminLoginInfoes">
+            <EntityTypeMapping TypeName="Db_1Model.AdminLoginInfo">
+              <MappingFragment StoreEntitySet="AdminLoginInfo">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeveloperLoginInfoes">
+            <EntityTypeMapping TypeName="Db_1Model.DeveloperLoginInfo">
+              <MappingFragment StoreEntitySet="DeveloperLoginInfo">
+                <ScalarProperty Name="Ratings" ColumnName="Ratings" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="Db_1Model.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="Positivity" ColumnName="Positivity" />
+                <ScalarProperty Name="FeedbackStr" ColumnName="FeedbackStr" />
+                <ScalarProperty Name="SubtaskId" ColumnName="SubtaskId" />
+                <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+                <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GetSubtaskInfoes">
+            <EntityTypeMapping TypeName="Db_1Model.GetSubtaskInfo">
+              <MappingFragment StoreEntitySet="GetSubtaskInfo">
+                <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+                <ScalarProperty Name="SubtaskId" ColumnName="SubtaskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GetTaskInfoes">
+            <EntityTypeMapping TypeName="Db_1Model.GetTaskInfo">
+              <MappingFragment StoreEntitySet="GetTaskInfo">
+                <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManagerLoginInfoes">
+            <EntityTypeMapping TypeName="Db_1Model.ManagerLoginInfo">
+              <MappingFragment StoreEntitySet="ManagerLoginInfo">
+                <ScalarProperty Name="Image_url" ColumnName="Image_url" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subtasks">
+            <EntityTypeMapping TypeName="Db_1Model.Subtask">
+              <MappingFragment StoreEntitySet="Subtask">
+                <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+                <ScalarProperty Name="SubtaskId" ColumnName="SubtaskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

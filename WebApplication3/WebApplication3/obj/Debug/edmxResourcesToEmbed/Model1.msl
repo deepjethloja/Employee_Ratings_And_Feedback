@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Db_1ModelStoreContainer" CdmEntityContainer="Db_1Entities">
+    <FunctionImportMapping FunctionImportName="GetLoginInfo" FunctionName="Db_1Model.Store.GetLoginInfo" />
+    <FunctionImportMapping FunctionImportName="Admin_Home" FunctionName="Db_1Model.Store.Admin_Home">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Db_1Model.Admin_Home_Result">
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Change_Password_Developer" FunctionName="Db_1Model.Store.Change_Password_Developer" />
+    <FunctionImportMapping FunctionImportName="Change_Password_Manager" FunctionName="Db_1Model.Store.Change_Password_Manager" />
+    <FunctionImportMapping FunctionImportName="Current_Task_Manager" FunctionName="Db_1Model.Store.Current_Task_Manager">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Db_1Model.Current_Task_Manager_Result">
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Feedback_Manager" FunctionName="Db_1Model.Store.Feedback_Manager" />
+    <FunctionImportMapping FunctionImportName="My_developers_ratings" FunctionName="Db_1Model.Store.My_developers_ratings">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Db_1Model.My_developers_ratings_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="Ratings" ColumnName="Ratings" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="My_PreviousSubtasks" FunctionName="Db_1Model.Store.My_PreviousSubtasks">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Db_1Model.My_PreviousSubtasks_Result">
+          <ScalarProperty Name="SubtaskId" ColumnName="SubtaskId" />
+          <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="My_Rating" FunctionName="Db_1Model.Store.My_Rating" />
+    <FunctionImportMapping FunctionImportName="My_Subtasks" FunctionName="Db_1Model.Store.My_Subtasks">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Db_1Model.My_Subtasks_Result">
+          <ScalarProperty Name="SubtaskId" ColumnName="SubtaskId" />
+          <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Previous_Task_Manager" FunctionName="Db_1Model.Store.Previous_Task_Manager">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Db_1Model.Previous_Task_Manager_Result">
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="View_MyRatings" FunctionName="Db_1Model.Store.View_MyRatings">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Db_1Model.View_MyRatings_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="Ratings" ColumnName="Ratings" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="AdminLoginInfoes">
+      <EntityTypeMapping TypeName="Db_1Model.AdminLoginInfo">
+        <MappingFragment StoreEntitySet="AdminLoginInfo">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeveloperLoginInfoes">
+      <EntityTypeMapping TypeName="Db_1Model.DeveloperLoginInfo">
+        <MappingFragment StoreEntitySet="DeveloperLoginInfo">
+          <ScalarProperty Name="Ratings" ColumnName="Ratings" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Feedbacks">
+      <EntityTypeMapping TypeName="Db_1Model.Feedback">
+        <MappingFragment StoreEntitySet="Feedback">
+          <ScalarProperty Name="Positivity" ColumnName="Positivity" />
+          <ScalarProperty Name="FeedbackStr" ColumnName="FeedbackStr" />
+          <ScalarProperty Name="SubtaskId" ColumnName="SubtaskId" />
+          <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+          <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GetSubtaskInfoes">
+      <EntityTypeMapping TypeName="Db_1Model.GetSubtaskInfo">
+        <MappingFragment StoreEntitySet="GetSubtaskInfo">
+          <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+          <ScalarProperty Name="SubtaskId" ColumnName="SubtaskId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GetTaskInfoes">
+      <EntityTypeMapping TypeName="Db_1Model.GetTaskInfo">
+        <MappingFragment StoreEntitySet="GetTaskInfo">
+          <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ManagerLoginInfoes">
+      <EntityTypeMapping TypeName="Db_1Model.ManagerLoginInfo">
+        <MappingFragment StoreEntitySet="ManagerLoginInfo">
+          <ScalarProperty Name="Image_url" ColumnName="Image_url" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subtasks">
+      <EntityTypeMapping TypeName="Db_1Model.Subtask">
+        <MappingFragment StoreEntitySet="Subtask">
+          <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="ProgressPercent" ColumnName="ProgressPercent" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+          <ScalarProperty Name="SubtaskId" ColumnName="SubtaskId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

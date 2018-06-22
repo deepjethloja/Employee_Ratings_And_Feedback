@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+   
+    .row.content {height: 1500px}
+
+    
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+        li.try {
+            margin-bottom:25px;
+            margin-top:25px;
+            margin-left:0px;
+        }
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    
+    @@media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;}
+    }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row content" style="height:800px">
+            <div class="col-sm-3 sidenav" style="height:800px">
+                <input id="sessionInputuser" type="hidden" value="@Session["name"]" />
+                <h2><b>@Session["name"]</b></h2>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="try"><b><a href="#section1" onclick="LoadAbout()">About</a></b></li>
+                    <li class="try"><b><a href="#section2" onclick="LoadAdd()">Manage Developer</a></b></li>
+                    <li class="try"><b><a href="#section4" onclick="Load_AddSubtasks()">Allocate Subtasks</a></b></li>
+                    <li class="try"><b><a href="#section5" onclick="LoadFeedbackForm()">Feedback to developer</a></b></li>
+                    <li class="try"><b><a href="#section6" onclick="LoadRatings()">View Ratings</a></b></li>
+                    <li class="try"><b><a href="#section6" onclick="LoadRecords()">Previous Tasks</a></b></li>
+                </ul><br>
+                
+            </div>
+
+            <div class="col-sm-9" style="border:none">
+                <iframe src="../Manager/AboutView" id="frameId" style="overflow:hidden;height:800px;width:840px"></iframe>
+                <script>
+                    function LoadAdd() {
+
+                        var loc = "@Url.Action("Index", "Manager_Add")";
+
+                        document.getElementById('frameId').setAttribute('src', loc);
+                    }
+                </script>
+                <script>
+                    function LoadAbout() {
+
+                        var loc = "@Url.Action("AboutView", "Manager")";
+
+                        document.getElementById('frameId').setAttribute('src', loc);
+                    }
+                </script>
+                
+                <script>
+                    function LoadRecords() {
+
+                        var loc = "@Url.Action("RecordView", "Manager")";
+
+                        document.getElementById('frameId').setAttribute('src', loc);
+                    }
+                </script>
+                <script>
+                    function LoadFeedbackForm() {
+
+                        var loc = "@Url.Action("FeedbackFormView", "Manager")";
+
+                        document.getElementById('frameId').setAttribute('src', loc);
+                    }
+                    function LoadRatings() {
+
+                        var loc = "@Url.Action("RatingsView", "Manager")";
+
+                        document.getElementById('frameId').setAttribute('src', loc);
+                    }
+                </script>
+                
+                <script>
+                    function Load_AddSubtasks() {
+
+                        var loc = "@Url.Action("Create", "Subtasks_Add")";
+
+                        document.getElementById('frameId').setAttribute('src', loc);
+                    }
+                </script>
+
+            </div>
+                        </div>
+                    </div>
+               
+
+    <footer class="container-fluid">
+        <p>Més que un club......Visca El Barça......Vamos Barca......Forca Barca</p>
+    </footer>
+
+</body>
+</html>

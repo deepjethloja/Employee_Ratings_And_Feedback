@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebApplication3.Current_Task_Manager_Result>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgressPercent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </th>
+        
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManagerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgressPercent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deadline.Date)
+        </td>
+        
+       
+    </tr>
+}
+
+</table>

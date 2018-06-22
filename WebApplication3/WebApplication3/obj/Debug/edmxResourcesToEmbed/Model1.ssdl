@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Db_1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AdminLoginInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeveloperLoginInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ManagerId" Type="int" />
+    <Property Name="Ratings" Type="float" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="FeedbackId" />
+    </Key>
+    <Property Name="FeedbackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeveloperId" Type="int" />
+    <Property Name="SubtaskId" Type="int" />
+    <Property Name="FeedbackStr" Type="nvarchar(max)" />
+    <Property Name="Positivity" Type="float" />
+  </EntityType>
+  <EntityType Name="GetSubtaskInfo">
+    <Key>
+      <PropertyRef Name="SubtaskId" />
+    </Key>
+    <Property Name="SubtaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeveloperId" Type="int" />
+    <Property Name="ManagerId" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ProgressPercent" Type="int" />
+    <Property Name="Deadline" Type="date" />
+    <Property Name="CompletionStatus" Type="int" />
+  </EntityType>
+  <EntityType Name="GetTaskInfo">
+    <Key>
+      <PropertyRef Name="TaskId" />
+    </Key>
+    <Property Name="TaskId" Type="int" Nullable="false" />
+    <Property Name="ManagerId" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ProgressPercent" Type="int" Nullable="false" />
+    <Property Name="Deadline" Type="date" Nullable="false" />
+    <Property Name="CompletionStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ManagerLoginInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="40" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Image_url" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Subtask">
+    <Key>
+      <PropertyRef Name="SubtaskId" />
+    </Key>
+    <Property Name="SubtaskId" Type="int" Nullable="false" />
+    <Property Name="DeveloperId" Type="int" />
+    <Property Name="ManagerId" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ProgressPercent" Type="int" />
+    <Property Name="Deadline" Type="date" />
+    <Property Name="CompletionStatus" Type="int" />
+  </EntityType>
+  <Function Name="Admin_Home" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Change_Password_Developer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Previous" Type="nvarchar" Mode="In" />
+    <Parameter Name="New" Type="nvarchar" Mode="In" />
+    <Parameter Name="ConfirmNew" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Change_Password_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Previous" Type="nvarchar" Mode="In" />
+    <Parameter Name="New" Type="nvarchar" Mode="In" />
+    <Parameter Name="ConfirmNew" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Current_Task_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Feedback_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DeveloperId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetLoginInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="My_developers_ratings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="My_PreviousSubtasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="My_Rating" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="My_Subtasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Previous_Task_Manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="View_MyRatings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="Db_1ModelStoreContainer">
+    <EntitySet Name="AdminLoginInfo" EntityType="Self.AdminLoginInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeveloperLoginInfo" EntityType="Self.DeveloperLoginInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GetSubtaskInfo" EntityType="Self.GetSubtaskInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GetTaskInfo" EntityType="Self.GetTaskInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ManagerLoginInfo" EntityType="Self.ManagerLoginInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subtask" EntityType="Self.Subtask" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
