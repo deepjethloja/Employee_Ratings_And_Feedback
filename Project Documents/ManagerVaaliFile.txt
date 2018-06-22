@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+   
+    .row.content {height: 1500px}
+
+    
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+        li.try {
+            margin:10px;
+        }
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    
+    @@media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;}
+    }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav">
+                <input id="sessionInputuser" type="hidden" value="@Session["username"]" />
+                <h2><b>@Session["username"]</b></h2>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="try"><b><a href="#section1"  onclick="LoadAbout()">About</a></b></li>
+                    <li class="try"><b><a href="#section2" onclick="LoadAdd()">Add Developer</a></b></li>
+                    <li class="try"><b><a href="#section3" onclick="LoadAppraisal()">View Appraisals</a></b></li>
+                    <li class="try"><b><a href="#section3" onclick="LoadRecords()">View previous records</a></b></li>
+                    <li class="try"><b><a href="#section3" onclick="LoadFeedback()">Feedback to co-worker</a></b></li>
+                    <li class="try"><b><a href="#section3" onclick="LoadNotification()">Notification</a></b></li>
+                </ul><br>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search Blog..">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-sm-9">
+                <iframe src="../Manager/AboutView" id="frameId" style="overflow:hidden;height:800px;width:100%"></iframe>
+                <script>
+                    function LoadAdd() {
+
+                        var loc = "@Url.Action("AddView", "Manager")";
+
+                        document.getElementById('frameId').setAttribute('src', loc);
+                    }
+                </script>
+                <script>
+                    function LoadAbout() {
+
+                        var loc = "@Url.Action("AboutView", "Manager")";
+
+                        document.getElementById('frameId').setAttribute('src', loc);
+                    }
+                </script>
+                <script>
+                    function LoadAppraisal() {
+
+                        var loc = "@Url.Action("AppraisalView", "Manager")";
+
+                        document.getElementById('frameId').setAttribute('src', loc);
+                    }
+                </script>
+                <script>
+                    function LoadRecords() {
+
+                        var loc = "@Url.Action("RecordView", "Manager")";
+
+                        document.getElementById('frameId').setAttribute('src', loc);
+                    }
+                </script>
+                <script>
+                    function LoadFeedback() {
+
+                        var loc = "@Url.Action("FeedbackView", "Manager")";
+
+                        document.getElementById('frameId').setAttribute('src', loc);
+                    }
+                    function LoadNotification() {
+
+                        var loc = "@Url.Action("NotificationView", "Manager")";
+
+                        document.getElementById('frameId').setAttribute('src', loc);
+                    }
+                </script>
+            </div>
+                        </div>
+                    </div>
+               
+
+    <footer class="container-fluid">
+        <p>Footer Text</p>
+    </footer>
+
+</body>
+</html>
